@@ -1,0 +1,38 @@
+name: Release
+
+# Push a tag like v0.1.0 and this builds the Windows app from the tagged source and attaches it to a GitHub release.
+# The build runs on a clean GitHub machine: it can never contain anyone's logins, settings or chat history.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      # Electron 44 downloads its binary on demand, not during npm ci; electron-builder reads it from node_modules/electron/dist
+      - run: node node_modules/electron/install.js
+      - run: npm run pack
+      - name: Zip the app
+        shell: pwsh
+        run: Compress-Archive -Path release/win-unpacked/* -DestinationPath FreeAgent-win-x64.zip
+      - name: Publish the release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >
+          gh release create "${{ github.ref_name }}" FreeAgent-win-x64.zip
+          --title "FreeAgent ${{ github.ref_name }}"
+          --generate-notes
+          --notes "Windows 64-bit. Extract the zip anywhere and run FreeAgent.exe. The app is not code-signed, so Windows SmartScreen may warn: click More info, then Run anyway. It contains no accounts or settings: you log in to the providers yourself, inside the app."
