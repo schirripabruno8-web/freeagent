@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>DeepSeek fixture: stop nascosto da CSS</title>
+<style>
+  [data-testid='stop'] { display: none; }
+</style>
+</head>
+<body>
+<header>
+  <button data-testid="new-chat" type="button">Nuova chat</button>
+  <button data-testid="model-trigger" type="button" aria-haspopup="listbox">DeepSeek-V3</button>
+</header>
+<main id="messages">
+  <div data-role="assistant">
+    <p>Risposta completata.</p>
+  </div>
+</main>
+<div id="toasts" role="alert"></div>
+<form>
+  <textarea id="chat-input" placeholder="Scrivi un messaggio"></textarea>
+  <button data-testid="stop" type="button">Stop</button>
+  <button data-testid="send" type="button" disabled>Invia</button>
+</form>
+</body>
+</html>

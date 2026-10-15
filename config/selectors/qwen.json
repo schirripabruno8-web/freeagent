@@ -1,0 +1,29 @@
+{
+  "_note": "Da npm run inspect + lettura in sola lettura della pagina viva (13 ott 2026, chat.qwen.ai). ATTENZIONE: la pagina e' localizzata (aria-label 'Send'/'Invia', 'Stop'/'Ferma'): qui solo classi e icone, mai testi. Invio = button.send-button (vuoto: attributo disabled + classe disabled); durante la generazione diventa button.stop-button. Il messaggio e' .response-message-content.phase-answer: la 'card' del ragionamento ne e' fuori. I blocchi di codice sono editor Monaco dentro <pre.qwen-markdown-code>: il testo si legge riga per riga da .view-line (il testo del pre mescola banner e numeri di riga). Menu modelli: .wms-list__item con il nome in .wms-list__name-text. Allegati: il campo input#filesUpload nel DOM NON e' quello che la pagina ascolta; si clicca '+' (.mode-select-open), poi la voce con icona #qwpcicon-upload, e la pagina apre il suo selettore file (intercettato): upload finito quando compare img.vision-item-image (mentre carica c'e' .vision-item-container-uploading, circa 2-3 s). All'apertura la pagina mostra uno splash (.splash-skeleton-group) per qualche secondo con il campo di testo gia' presente: finche' e' visibile menu e upload non funzionano. A volte Qwen mostra un test A/B ('Quale risposta preferisci?': due risposte affiancate, campo di testo nascosto) e non si va avanti finche' non se ne sceglie una: il bottone e' .smrm-card__prefer-btn (nome dal codice della pagina, NON visto dal vivo), disabilitato finche' le risposte non sono finite; 'Salta' in quel pannello salta solo il ragionamento. Non catturati: toast di errore/limite (errorRegions), indicatore di logout, bottone nuova chat (si ricarica la URL). I pattern degli errori mancano: un limite raggiunto non viene riconosciuto finche' non si vede un toast vero. Da verificare: blocchi di codice LUNGHI (Monaco potrebbe non disegnare tutte le righe).",
+  "provider": "qwen",
+  "version": 4,
+  "url": "https://chat.qwen.ai/",
+  "allowedHosts": ["chat.qwen.ai"],
+  "input": "textarea.message-input-textarea",
+  "inputKind": "textarea",
+  "loading": ".splash-skeleton-group",
+  "dismiss": ".smrm-card__prefer-btn",
+  "sendButton": "button.send-button",
+  "sendDisabled": ".disabled",
+  "stopButton": "button.stop-button",
+  "assistantMessage": ".response-message-content.phase-answer",
+  "codeLang": ".qwen-markdown-code-header > div:first-child",
+  "codeLines": ".view-line",
+  "attach": {
+    "open": ".mode-select-open",
+    "choose": ".mode-select-dropdown-item:has(use[*|href=\"#qwpcicon-upload\"])",
+    "ready": ".file-card-list img.vision-item-image"
+  },
+  "model": {
+    "trigger": ".wms-trigger",
+    "option": ".wms-list__item",
+    "current": ".wms-list__item--selected",
+    "label": ".wms-list__name-text"
+  },
+  "settle": { "idleMs": 2000, "maxWaitMs": 600000 }
+}

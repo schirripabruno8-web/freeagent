@@ -1,0 +1,28 @@
+{
+  "_help": "Sub-agenti che l'agente principale puo' usare con il tool delegate. Con 'agents' vuoto delegate non esiste. Copia un esempio da _example in 'agents'. Provider e fallback devono avere i selettori catturati (npm run inspect -- <provider>). 'limits' vale all'avvio dell'app. 'vision' = la chat che VEDE le immagini per il tool look (serve un provider con i selettori 'attach': oggi solo Qwen); senza 'vision' look non esiste. Un sub-agente usa render e look solo se li elenca in 'tools' (e la skill visual-check in 'skills').",
+  "limits": { "default": 2, "perProvider": {}, "cooldownMs": 1500, "rateLimitBackoffMs": 600000, "maxWaitMs": 120000 },
+  "vision": { "provider": "qwen" },
+  "agents": [
+    {
+      "name": "modeler",
+      "description": "Modella UNA parte 3D in Blender con bpy (execute_python), nel proprio Blender; salva un .blend nella sua cartella e riporta il percorso esatto. Se serve, fa un render di controllo e lo guarda (look).",
+      "provider": "deepseek",
+      "tools": ["read", "glob", "render", "look"],
+      "mcp": ["blender"],
+      "skills": ["visual-check"],
+      "maxSteps": 30
+    },
+    {
+      "name": "builder",
+      "description": "Costruisce UN file nella cartella di lavoro (PowerPoint con python-pptx, pagina HTML, SVG, script) e lo controlla da solo con render + look, correggendolo, prima di consegnare",
+      "provider": "deepseek",
+      "tools": ["read", "glob", "grep", "write", "edit", "bash", "render", "look"],
+      "skills": ["visual-check"],
+      "maxSteps": 40
+    }
+  ],
+  "_example": [
+    { "name": "analyst", "description": "Legge e analizza cartelle e file, non modifica nulla", "provider": "qwen", "fallback": ["kimi"], "tools": ["read", "glob", "grep"], "maxSteps": 20 },
+    { "name": "editor", "description": "Modifica i file richiesti con edit e write", "provider": "deepseek", "tools": ["read", "glob", "grep", "write", "edit"], "maxSteps": 25 }
+  ]
+}

@@ -1,0 +1,12 @@
+node_modules
+out
+inspect-out
+release
+*.log
+*.tmp
+# local shortcuts and launchers
+*.lnk
+Apri-prompt.bat
+# per-user data the app or scripts may leave in the folder
+.freeagent/
+.claude/

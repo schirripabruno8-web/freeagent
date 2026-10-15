@@ -1,0 +1,11 @@
+{
+  "repo": "https://github.com/DietrichGebert/ponytail",
+  "sha": "9b58c1ffb790c075ca32e70a89cf1d80588f4abf",
+  "commitDate": "2026-10-10T04:19:52Z",
+  "license": "MIT",
+  "files": [
+    "skills/ponytail/SKILL.md",
+    "LICENSE"
+  ],
+  "importedAt": "2026-10-11T23:05:40.894Z"
+}

@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head><title>SEGRETO-TITOLO-PAGINA</title></head>
+<body>
+  <aside>
+    <input type="search" placeholder="Cerca" value="SEGRETO-PASSWORD">
+    <a href="https://chat.deepseek.com/a/SEGRETO-HREF" class="chat-item">SEGRETO-TITOLO-CHAT</a>
+  </aside>
+  <main>
+    <div data-testid="conv">
+      <div class="msg" data-message-author-role="user"><p>Ciao</p></div>
+      <div class="msg" data-message-author-role="assistant"><div class="markdown"><p>Primo</p><pre><code>let a = 1</code></pre></div></div>
+      <div class="msg" data-message-author-role="assistant"><div class="markdown"><p>SEGRETO-MESSAGGIO</p><ul><li>uno</li></ul></div></div>
+      <div class="msg" data-message-author-role="assistant"><div class="markdown"><pre><code>print(2)</code></pre></div></div>
+    </div>
+    <form class="composer">
+      <div class="box">
+        <textarea id="prompt" placeholder="Chiedi qualcosa" aria-label="Messaggio"></textarea>
+        <div contenteditable="true" hidden></div>
+      </div>
+      <button data-testid="send" aria-label="Invia" disabled><svg><path d="M0 0"></path></svg></button>
+    </form>
+    <button data-testid="model" aria-haspopup="listbox">DeepSeek-V3</button>
+    <div role="listbox">
+      <div role="option">DeepSeek-V3</div>
+      <div role="option">DeepSeek-R1</div>
+    </div>
+    <div role="alert" class="toast">Limite raggiunto</div>
+  </main>
+</body>
+</html>

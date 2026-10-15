@@ -1,0 +1,26 @@
+{
+  "_note": "config che combacia con le fixture chat.html (test dell adapter); NON e il config reale",
+  "provider": "deepseek",
+  "version": 1,
+  "url": "https://chat.deepseek.com/",
+  "allowedHosts": ["chat.deepseek.com"],
+  "input": "#chat-input",
+  "inputKind": "textarea",
+  "sendButton": "[data-testid='send']",
+  "stopButton": "[data-testid='stop']",
+  "assistantMessage": "[data-role='assistant']",
+  "newChatButton": "[data-testid='new-chat']",
+  "loginIndicator": "[data-testid='login']",
+  "model": {
+    "trigger": "[data-testid='model-trigger']",
+    "option": "[role='option']"
+  },
+  "errorRegions": "[role='alert']",
+  "errors": {
+    "rate_limit": ["rate limit", "too many requests", "troppe richieste"],
+    "login_required": ["log ?in", "sign ?in", "accedi"],
+    "captcha": ["captcha"],
+    "network": ["network error", "errore di rete"]
+  },
+  "settle": { "idleMs": 1500, "maxWaitMs": 300000 }
+}

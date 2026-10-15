@@ -1,0 +1,25 @@
+{
+  "_note": "Da npm run inspect (11 ott 2026). Niente classi hash (_27c9245...): solo ds-* e md-code-block. Invio e stop sono lo STESSO bottone con icona diversa: lo stop si riconosce dal path dell'icona (quadrato, d inizia con M2 4.88C2 3.68). Il messaggio e' .ds-assistant-message-main-content: il blocco ragionamento (.ds-think-content) ne e' fuori. Pattern degli errori indicativi, da affinare con toast reali. Non c'e' selettore modello visibile (solo toggle Pensiero Profondo / Ricerca intelligente).",
+  "provider": "deepseek",
+  "version": 3,
+  "url": "https://chat.deepseek.com/",
+  "allowedHosts": ["chat.deepseek.com"],
+  "input": "textarea.ds-scroll-area",
+  "inputKind": "textarea",
+  "sendButton": "div.ds-button--primary.ds-button--circle",
+  "sendDisabled": ".ds-button--disabled",
+  "stopButton": "div.ds-button--primary.ds-button--circle:has(svg path[d^=\"M2 4.88C2 3.68\"])",
+  "thinking": ".ds-think-content",
+  "assistantMessage": ".ds-assistant-message-main-content",
+  "codeBlock": ".md-code-block",
+  "codeLang": ".md-code-block-banner span:not(.ds-button__content)",
+  "loginIndicator": "input[type=password]",
+  "errorRegions": ".ds-notification-container",
+  "errors": {
+    "rate_limit": ["rate limit", "too many requests", "troppe richieste", "try again later", "riprova più tardi"],
+    "login_required": ["log ?in", "sign ?in", "accedi", "session expired", "sessione scaduta"],
+    "captcha": ["captcha", "verify you are human"],
+    "network": ["network error", "errore di rete"]
+  },
+  "settle": { "idleMs": 2000, "maxWaitMs": 600000 }
+}

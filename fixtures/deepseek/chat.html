@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>DeepSeek fixture: chat vuota</title>
+</head>
+<body>
+<header>
+  <button data-testid="new-chat" type="button">Nuova chat</button>
+  <button data-testid="model-trigger" type="button" aria-haspopup="listbox">DeepSeek-V3</button>
+  <ul role="listbox" hidden>
+    <li role="option" data-value="deepseek-chat">DeepSeek V3</li>
+    <li role="option" data-value="deepseek-reasoner">DeepSeek R1</li>
+  </ul>
+</header>
+<main id="messages"></main>
+<div id="toasts" role="alert"></div>
+<form>
+  <textarea id="chat-input" placeholder="Scrivi un messaggio"></textarea>
+  <button data-testid="stop" type="button" hidden>Stop</button>
+  <button data-testid="send" type="button" disabled>Invia</button>
+</form>
+</body>
+</html>

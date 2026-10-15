@@ -1,0 +1,27 @@
+{
+  "_help": "Server MCP (formato .mcp.json + 'freeagent'). I sub-agenti li usano se elencati in 'mcp' in agents.json; l'agente principale li usa se mainAccess non e' false. 'allowTools' e' l'elenco di tool che gli agenti VEDONO (* jolly): serve a spegnere i tool di terze parti. Segnaposto: {blenderExe} {agentDir} {ready} {port} {agent} {server} e %VAR%. Modalita': shared, serialized, lease (un agente alla volta per tutto il suo lavoro), instance-per-agent (un processo per agente).",
+  "mcpServers": {
+    "blender": {
+      "description": "Blender senza finestra: scrivi bpy con execute_python, un Blender per agente. La scena resta tra le chiamate, le variabili Python no. Parte con Cube, Light e Camera: rimuovili. Non usare read_factory_settings (spegne il componente MCP).",
+      "url": "{ready}",
+      "freeagent": {
+        "concurrency": "instance-per-agent",
+        "maxInstances": 10,
+        "minFreeMemMB": 2048,
+        "headless": true,
+        "launch": {
+          "command": "{blenderExe}",
+          "args": ["--background", "--python", "%APPDATA%\\freeagent\\mcp\\dcc-mcp-blender\\dcc_mcp_blender\\blender_bootstrap.py"],
+          "env": { "PYTHONPATH": "%APPDATA%\\freeagent\\mcp\\dcc-mcp-blender" },
+          "cwd": "{agentDir}",
+          "ready": "MCP_URL=(\\S+)",
+          "startTimeoutMs": 120000
+        },
+        "initCalls": [{ "tool": "load_skill", "arguments": { "skill_name": "blender-scripting" } }],
+        "allowTools": ["execute_python", "get_blender_info", "blender_scripting__execute_python", "blender_scripting__get_blender_info"],
+        "readOnlyTools": ["get_blender_info", "blender_scripting__get_blender_info"],
+        "health": { "tool": "get_blender_info" }
+      }
+    }
+  }
+}
